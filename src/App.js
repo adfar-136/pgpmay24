@@ -1,16 +1,15 @@
-import About from "./components/About"
-import Blog from "./components/Blog";
-import Contact from "./components/Contact"
-function App(){
-  var visible = true;
+import React, { useState } from 'react'
+
+export default function App() {
+  const [condition,setCondition] = useState(false)
+  function handleBackground(){
+    setCondition(!condition)
+  }
   return (
-    <>
-     <h1>React App</h1>
-     {visible ? <About/>:<Contact/>}
-     {visible && <Blog/>}
-    </>
+    <div style={{backgroundColor:condition?"black":"white",color:condition?"white":"black"}}>
+      <h1>Hello, world!</h1>
+      <p>This is a React app.</p>
+      <button onClick={handleBackground}>{condition?"Light":"Dark"} Mode</button>
+    </div>
   )
 }
-
-// export {App}
-export default App
