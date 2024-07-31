@@ -1,20 +1,19 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import JokeGEnerator from './components/JokeGEnerator'
 
 export default function App() {
-  const [name,setName] = useState("")
-  const [conditin,setcondition] = useState(false)
-  function handleSubmit(e){
-    e.preventDefault()
-    setcondition(true)
-  }
+  const [count,setCount] = useState(0)
+  const [number,setNumber] = useState(100)
+  useEffect(()=>{
+      console.log("adfar")
+  },[count])
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input type="text" 
-        value={name} onChange={(e)=>setName(e.target.value)}/>
-        <button type="submit">Submit</button>
-      </form>
-      {conditin && <h1>{name}</h1>}
+      <JokeGEnerator/>
+      <h1>{count}</h1>
+      <button onClick={() => setCount(count + 1)}>+</button>
+      <h1>Number :{number}</h1>
+      <button onClick={() => setNumber(number - 1)}>-----</button>
     </div>
   )
 }

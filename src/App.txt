@@ -133,3 +133,64 @@ export default function App() {
   )
 }
 
+//controlled component
+import React, { useState } from 'react'
+
+export default function App() {
+  const [name,setName] = useState("")
+  const [email,setEmail] = useState("")
+  const [pass,setPass] = useState("")
+  const [conditin,setcondition] = useState(false)
+  function handleSubmit(e){
+    e.preventDefault()
+    setcondition(true)
+  }
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input type="text" 
+        value={name} onChange={(e)=>setName(e.target.value)}/>
+        <input type="email" 
+        value={email} onChange={(e)=>setEmail(e.target.value)}/>
+        <input type="password" 
+        value={pass} onChange={(e)=>setPass(e.target.value)}/>
+        <button type="submit">Submit</button>
+      </form>
+      {conditin && <h1>{name} {email} {pass}</h1>}
+    </div>
+  )
+}
+
+
+import React, { useState } from 'react'
+
+export default function App() {
+  const [inputs,setInputs] = useState({
+    name:"Adfar",
+    email:"ad@ad.com",
+    pass:"123",
+  })
+ 
+  const [conditin,setcondition] = useState(false)
+  function handleSubmit(e){
+    e.preventDefault()
+    setcondition(true)
+  }
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input type="text" 
+        value={inputs.name} 
+        onChange={(e)=>setInputs((prev)=>({...prev,name:e.target.value}))}/>
+        <input type="email" 
+        value={inputs.email} 
+        onChange={(e)=>setInputs((prev)=>({...prev,email:e.target.value}))}/>
+        <input type="password" 
+        value={inputs.pass} 
+        onChange={(e)=>setInputs((prev)=>({...prev,pass:e.target.value}))}/>
+        <button type="submit">Submit</button>
+      </form>
+     <h1>{inputs.name} {inputs.email} {inputs.pass}</h1>
+    </div>
+  )
+}
