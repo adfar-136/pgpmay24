@@ -1,19 +1,25 @@
-import React, { useEffect, useState } from 'react'
-import JokeGEnerator from './components/JokeGEnerator'
+import React, { useState } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Home from './components/routes/Home'
+import About from './components/routes/About'
+import Contact from './components/routes/Contact'
+import User from './components/routes/User'
+import Navbar from './components/routes/Navbar'
 
 export default function App() {
-  const [count,setCount] = useState(0)
-  const [number,setNumber] = useState(100)
-  useEffect(()=>{
-      console.log("adfar")
-  },[count])
+  const [count,setCoount]= useState(0)
   return (
     <div>
-      <JokeGEnerator/>
-      <h1>{count}</h1>
-      <button onClick={() => setCount(count + 1)}>+</button>
-      <h1>Number :{number}</h1>
-      <button onClick={() => setNumber(number - 1)}>-----</button>
+      <button onClick={()=>setCoount(count+1)}>{count}</button>
+      <BrowserRouter>
+        <Navbar/>
+        <Routes>
+          <Route path='/' element={<Home/>}/>
+          <Route path='/about' element={<About/>}/>
+          <Route path='/contact' element={<Contact/>}/>
+          <Route path='/user' element={<User/>}/>
+        </Routes>
+      </BrowserRouter>
     </div>
   )
 }
